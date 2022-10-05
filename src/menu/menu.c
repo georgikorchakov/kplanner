@@ -107,6 +107,22 @@ void kp_menu_highlight_off(struct kp_menu_t *menu)
   menu->highlight = 0;
 }
 
+int kp_menu_get_active_id(struct kp_menu_t *menu)
+{
+  return menu->menu_elements[menu->active_element]->id;
+}
+
+char* kp_menu_get_element_name(struct kp_menu_t *menu, int id)
+{
+  for ( int element_position = 0; element_position < menu->num_elements; ++element_position )
+    if ( menu->menu_elements[element_position]->id == id )
+      {
+        return menu->menu_elements[element_position]->name;
+      }
+
+  return NULL;
+}
+
 void kp_menu_draw(struct kp_menu_t *menu)
 {
   int win_end_y, win_end_x;
